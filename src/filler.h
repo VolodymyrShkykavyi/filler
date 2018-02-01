@@ -12,6 +12,7 @@
 
 #ifndef FILLER_H
 # define FILLER_H
+# define ABS (x) ((x > 0) ? (x) : (-x))
 
 # include "../libft/includes/ft_printf.h"
 # include "../libft/includes/libft.h"

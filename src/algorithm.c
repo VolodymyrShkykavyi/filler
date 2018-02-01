@@ -44,9 +44,12 @@ static t_point	alg_find_enemy(t_game *game)
 short	alg_enemy_angle(t_game *game)
 {
 	t_point		enm_pos;
+	double		angle_rad;
 
 	enm_pos = alg_find_enemy(game);
+	angle_rad =
 	//math
+
 }
 
 void	algorithm(t_game *game)
