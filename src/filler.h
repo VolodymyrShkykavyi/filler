@@ -17,6 +17,7 @@
 # include "../libft/includes/ft_printf.h"
 # include "../libft/includes/libft.h"
 # include <stdlib.h>
+#include <stdio.h>
 
 typedef struct		s_point
 {
@@ -24,24 +25,28 @@ typedef struct		s_point
 	int 			y;
 }					t_point;
 
+typedef struct		s_enemy
+{
+	t_point			top;
+	t_point			bot;
+	t_point			left;
+	t_point			right;
+}					t_enemy;
+
 typedef struct		s_game
 {
 	char			**map;
 	char			**piece;
 	char			enm;
 	char			plr;
-	t_point			enm_start;
-	t_point			plr_start;
+	t_enemy			enm_extreme;
 	short			map_h;
 	short			map_w;
 	short			piece_h;
 	short			piece_w;
 }					t_game;
 
-typedef struct		s_enemy
-{
 
-}					t_enemy;
 
 int					get_player(t_game *game);
 int 				init_map(t_game *game, char **line);
@@ -49,7 +54,7 @@ void				read_map(t_game *game, char **line);
 void				read_piece(t_game *game, char **line);
 void				init_start_positions(t_game *game);
 void				algorithm(t_game *game);
-
+t_enemy				alg_get_enemy_extremepos(t_game *game);
 
 
 #endif
