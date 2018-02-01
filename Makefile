@@ -3,7 +3,7 @@ CC = gcc
 FLAGS = -Wall -Werror -Wextra
 OBJECT_DIR = objects
 OBJ = $(addprefix $(OBJECT_DIR)/, $(SRC:src/%.c=%.o))
-SRC = $(addprefix src/, main.c read.c get_player.c algorithm.c)
+SRC = $(addprefix src/, main.c read.c get_player.c)
 INCLUDES = src/filler.h
 
 all: $(NAME)
@@ -22,8 +22,7 @@ fclean: clean
 re: fclean
 	$(MAKE) re -C libft
 	make
-compile:
+run:
 	make
 	mv $(NAME) players/$(NAME)
-run: compile
 	./filler_vm -p1 players/$(NAME) -p2 players/abanlin.filler -f maps/map00

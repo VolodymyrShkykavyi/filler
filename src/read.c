@@ -58,12 +58,10 @@ void	read_map(t_game *game, char **line)
 		if (!(get_next_line(0, line)))
 			return ;
 		if (ft_isdigit((*line)[0]) == 0)
-		{
-			if (game->enm_extreme.bot.x == -1)
-				game->enm_extreme = alg_get_enemy_extremepos(game);
 			return ;
-		}
 	}
+	if (game->plr_start == -1 || game->enm_start == -1)
+		init_start_positions(game);
 }
 
 void	read_piece(t_game *game, char **line)

@@ -20,16 +20,16 @@ static void	init_game(t_game *game)
 	game->plr = 0;
 	game->map = NULL;
 	game->piece = NULL;
-	game->enm_extreme.bot.x = -1;
+	game->enm_start.x = -1;
+	game->plr_start.x = -1;
 }
-/*
+
 void		init_start_positions(t_game *game)
 {
 	int		x;
 	int 	y;
 
 	x = -1;
-	dprintf(2, "init start pos\n");
 	while (game->map[++x])
 	{
 		y = -1;
@@ -37,7 +37,6 @@ void		init_start_positions(t_game *game)
 		{
 			if (game->map[x][y] == game->plr)
 			{
-				dprintf(2, "player at %i %i\n", x, y);
 				game->plr_start.x = x;
 				game->plr_start.y = y;
 			}
@@ -51,7 +50,7 @@ void		init_start_positions(t_game *game)
 		}
 	}
 }
-*/
+
 int 		main(void)
 {
 	t_game	game;
@@ -75,15 +74,13 @@ int 		main(void)
 			ft_strdel(&line);
 		if (game.piece != NULL)
 		{
-
+			//ft_printarr(game.map);
 			//ft_printarr(game.piece);
 			algorithm(&game);
-			ft_printarr(game.map);
-			ft_putstr_fd("\n", 2);
 			ft_free_2arr(game.piece);
 			game.piece = NULL;
 			//ft_putstr_fd("\npiece\n", 2);
-			ft_printf("3 3\n");
+			ft_putstr_fd("8 2\n", 1);
 
 		}
 	}

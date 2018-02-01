@@ -22,8 +22,6 @@ void	ft_printarr(char **arr)
 	while (arr[i])
 	{
 		ft_putchar_fd('[', 2);
-		if (i < 10)
-			ft_putchar_fd('0', 2);
 		ft_putnbr_fd(i, 2);
 		ft_putstr_fd("] => \"", 2);
 		ft_putstr_fd(arr[i], 2);
