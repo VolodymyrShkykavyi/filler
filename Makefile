@@ -3,7 +3,7 @@ CC = gcc
 FLAGS = -Wall -Werror -Wextra
 OBJECT_DIR = objects
 OBJ = $(addprefix $(OBJECT_DIR)/, $(SRC:src/%.c=%.o))
-SRC = $(addprefix src/, main.c read.c get_player.c)
+SRC = $(addprefix src/, main.c read.c get_player.c algorithm.c)
 INCLUDES = src/filler.h
 
 all: $(NAME)

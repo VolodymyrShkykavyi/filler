@@ -80,7 +80,7 @@ int 		main(void)
 			ft_free_2arr(game.piece);
 			game.piece = NULL;
 			//ft_putstr_fd("\npiece\n", 2);
-			ft_putstr_fd("8 2\n", 1);
+			//ft_putstr_fd("8 2\n", 1);
 
 		}
 	}

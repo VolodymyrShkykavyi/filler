@@ -60,7 +60,7 @@ void	read_map(t_game *game, char **line)
 		if (ft_isdigit((*line)[0]) == 0)
 			return ;
 	}
-	if (game->plr_start == -1 || game->enm_start == -1)
+	if (game->plr_start.x == -1 || game->enm_start.x == -1)
 		init_start_positions(game);
 }
 
