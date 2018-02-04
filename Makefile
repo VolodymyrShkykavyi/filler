@@ -22,7 +22,9 @@ fclean: clean
 re: fclean
 	$(MAKE) re -C libft
 	make
-run:
+compile:
 	make
+	rm -f players/$(NAME)
 	mv $(NAME) players/$(NAME)
+run:
 	./filler_vm -p1 players/$(NAME) -p2 players/abanlin.filler -f maps/map00

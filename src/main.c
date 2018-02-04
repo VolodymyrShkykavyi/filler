@@ -30,6 +30,7 @@ void		init_start_positions(t_game *game)
 	int 	y;
 
 	x = -1;
+	//dprintf(2, "init start pos\n");
 	while (game->map[++x])
 	{
 		y = -1;
@@ -61,19 +62,24 @@ int 		main(void)
 		return (0);
 	while (get_next_line(0, &line))
 	{
+		//dprintf(2, "line: %s\n", line);
 		if (!(game.map_h))
 		{
+			//dprintf(2, "init map\n");
 			if (init_map(&game, &line))
 				return (0);
 		}
 		if (line && ft_isdigit(line[0]))
-			read_map(&game, &line);
-		if (line && !(ft_strncmp(line, "Piece", 5)))
-			read_piece(&game, &line);
-		if (line != NULL)
-			ft_strdel(&line);
-		if (game.piece != NULL)
 		{
+			//dprintf(2, "before read map\n");
+			read_map(&game, &line);
+			if (game.plr_start.x == -1 || game.enm_start.x == -1)
+				init_start_positions(&game);
+		}
+		if (line && !(ft_strncmp(line, "Piece", 5)))
+		{
+			read_piece(&game, &line);
+
 			//ft_printarr(game.map);
 			//ft_printarr(game.piece);
 			algorithm(&game);
@@ -83,5 +89,7 @@ int 		main(void)
 			//ft_putstr_fd("8 2\n", 1);
 
 		}
+		if (line != NULL)
+			ft_strdel(&line);
 	}
 }

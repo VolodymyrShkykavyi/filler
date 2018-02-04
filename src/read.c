@@ -32,9 +32,17 @@ int 	init_map(t_game *game, char **line)
 	if (!(game->map = (char**)malloc(sizeof(char*) * (height + 1))))
 		return (1);
 	game->map[height] = NULL;
+	if (!(game->old_map = (char**)malloc(sizeof(char*) * (height + 1))))
+		return (1);
+	game->old_map[height] = NULL;
 	while (--height >= 0)
+	{
 		if (!(game->map[height] = ft_strnew(game->map_w)))
 			return (1);
+		if (!(game->old_map[height] = ft_strnew(game->map_w)))
+			return (1);
+	}
+	//dprintf(2, "eof init map\n");
 	return (0);
 }
 
@@ -48,6 +56,7 @@ void	read_map(t_game *game, char **line)
 	int 	i;
 
 	i = -1;
+	//dprintf(2, "start reading map\n");
 	while (++i < game->map_h)
 	{
 		if (!(arr = ft_strsplit(*line, ' ')))
@@ -60,8 +69,6 @@ void	read_map(t_game *game, char **line)
 		if (ft_isdigit((*line)[0]) == 0)
 			return ;
 	}
-	if (game->plr_start.x == -1 || game->enm_start.x == -1)
-		init_start_positions(game);
 }
 
 void	read_piece(t_game *game, char **line)

@@ -28,6 +28,7 @@ typedef struct		s_point
 typedef struct		s_game
 {
 	char			**map;
+	char			**old_map;
 	char			**piece;
 	char			enm;
 	char			plr;
@@ -43,6 +44,8 @@ typedef struct		s_alg
 {
 	char			reached;
 	t_point			result;
+	t_point			piece_start;
+	t_point			enm_last;
 }					t_alg;
 
 int					get_player(t_game *game);
