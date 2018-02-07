@@ -17,10 +17,10 @@
 ** Example of line with map info: "Plateau 15 17:"
 */
 
-int 	init_map(t_game *game, char **line)
+int		init_map(t_game *game, char **line)
 {
 	char	**arr;
-	int 	height;
+	int		height;
 
 	if (!(arr = ft_strsplit(*line, ' ')))
 		return (1);
@@ -42,21 +42,20 @@ int 	init_map(t_game *game, char **line)
 		if (!(game->old_map[height] = ft_strnew(game->map_w)))
 			return (1);
 	}
-	//dprintf(2, "eof init map\n");
 	return (0);
 }
 
 /*
-** save all map. If start enemy and player positions aren't saved yet - just DO IT!
+** save all map.
+** If start enemy and player positions aren't saved yet - just DO IT!
 */
 
 void	read_map(t_game *game, char **line)
 {
 	char	**arr;
-	int 	i;
+	int		i;
 
 	i = -1;
-	//dprintf(2, "start reading map\n");
 	while (++i < game->map_h)
 	{
 		if (!(arr = ft_strsplit(*line, ' ')))
@@ -76,7 +75,7 @@ void	read_piece(t_game *game, char **line)
 	char	**arr;
 	int		i;
 
-	if (!(arr = ft_strsplit(*line,' ')))
+	if (!(arr = ft_strsplit(*line, ' ')))
 		return ;
 	game->piece_h = ft_atoi(arr[1]);
 	game->piece_w = ft_atoi(arr[2]);

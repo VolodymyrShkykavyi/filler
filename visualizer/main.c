@@ -23,10 +23,9 @@ int 	main(void)
 	int 	x;
 	int		width;
 	char	**arr;
-	char	command[50];
 
 	end = 0;
-
+	x = 0;
 	system("clear");
 	system( "tput civis");
 	while (get_next_line(0, &line) > 0)
@@ -40,43 +39,19 @@ int 	main(void)
 			ft_free_2arr(arr);
 			continue ;
 		}
-		/*if (ft_strncmp(line, "Piece", 5) == 0)
-		{
-			x = 5;
-			//ft_printf("piece");
-			while (get_next_line(0, &line))
-			{
-
-				if (line[0] == '<')
-				{
-					while (x >= 5)
-					{
-						ft_bzero(command, 50);
-						ft_strcpy(command, "tput cup ");
-						ft_strcpy(command, ft_strjoin(command, ft_itoa(x)));
-						ft_strcpy(command, ft_strjoin(command, " "));
-						ft_strcpy(command, ft_strjoin(command, ft_itoa(width + 7)));
-						x--;
-						//system("tput cup 3 40");
-						system(command);
-						ft_printf("%20c\n", ' ');
-					}
-					break ;
-				}
-				ft_bzero(command, 50);
-				ft_strcpy(command, "tput cup ");
-				ft_strcpy(command, ft_strjoin(command, ft_itoa(x)));
-				ft_strcpy(command, ft_strjoin(command, " "));
-				ft_strcpy(command, ft_strjoin(command, ft_itoa(width + 7)));
-				x++;
-				//system("tput cup 3 40");
-				system(command);
-				ft_printf("%s\n", line);
-			}
-		}*/
 		if (line[0] == '$')
 		{
-			ft_printf("%s\n", line);
+			x = -1;
+			while (ft_isdigit(line[++x]) == 0)
+				ft_printf("%c", line[x]);
+			if (line[x] == '1')
+				ft_printf("1 (\033[34m%C\033[0m)", L'■');
+			else
+				ft_printf("2 (\033[31m%C\033[0m)", L'■');
+			while (line[++x])
+				ft_printf("%c", line[x]);
+			ft_printf("\n");
+			x = 0;
 			continue ;
 		}
 		if (ft_isdigit(line[0]))
@@ -86,32 +61,37 @@ int 	main(void)
 				if (line[i] == 'X')
 					ft_printf("\033[31m%C\033[0m", L'■');
 				else if (line[i] == 'x')
-					ft_printf("\033[31m%C\033[0m", L'▣');
+					ft_printf("\033[31m%C\033[0m", /*L'▣'*/ L'☒');
 				else if (line[i] == 'O')
 					ft_printf("\033[34m%C\033[0m", L'■');
 				else if (line[i] == 'o')
-					ft_printf("\033[34m%C\033[0m", L'▣');
+					ft_printf("\033[34m%C\033[0m", /*L'▣'*/ L'☒');
 				else if (line[i] == '.')
 					ft_printf("%C", L'□');
 				else
 					ft_printf("%c", line[i]);
 			}
-			ft_printf("\n");
+			ft_printf("%-30c\n", ' ');
 		}
 		if (line[0] == '=')
 		{
-			ft_printf("%s\n", line);
+			i = 0;
+			while (line[i] != 'O' && line[i] != 'X')
+				ft_printf("%c", line[i++]);
+			if (line[i] == 'X')
+				ft_printf("\033[31m%C\033[0m", L'■');
+			else if (line[i] == 'O')
+				ft_printf("\033[34m%C\033[0m", L'■');
+			ft_printf("%-50s\n", &(line[++i]));
 			ft_strdel(&line);
 			if (end)
 			{
 				system("tput cnorm");
-
 				exit(0);
 			}
 			end++;
 			continue ;
 		}
-
 		ft_strdel(&line);
 	}
 }

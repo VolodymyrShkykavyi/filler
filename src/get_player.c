@@ -34,6 +34,5 @@ int		get_player(t_game *game)
 	}
 	else
 		return (1);
-	//dprintf(2, "plyer pos saved\n");
 	return (0);
 }

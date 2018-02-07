@@ -22,7 +22,7 @@
 typedef struct		s_point
 {
 	int				x;
-	int 			y;
+	int				y;
 }					t_point;
 
 typedef struct		s_game
@@ -42,19 +42,20 @@ typedef struct		s_game
 
 typedef struct		s_alg
 {
-	char			reached;
 	t_point			result;
 	t_point			piece_start;
 	t_point			enm_last;
+	unsigned long	enm_last_len;
 }					t_alg;
 
 int					get_player(t_game *game);
-int 				init_map(t_game *game, char **line);
+int					init_map(t_game *game, char **line);
 void				read_map(t_game *game, char **line);
 void				read_piece(t_game *game, char **line);
 void				init_start_positions(t_game *game);
 void				algorithm(t_game *game);
-
-
+unsigned long		len_between_points(t_point p1, t_point p2);
+short				alg_check_piece_overlap(t_game *game, t_alg *alg,
+											t_point pos);
 
 #endif
